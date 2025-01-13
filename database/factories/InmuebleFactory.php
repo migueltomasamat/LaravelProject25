@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Ciudad;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -25,7 +26,8 @@ class InmuebleFactory extends Factory
             'bloque'=>fake()->randomLetter(),
             'piso'=>fake()->numberBetween(0,100),
             'puerta'=>fake()->randomLetter(),
-            'ciudad_id'=>Ciudad::obtenerIdCiudadAleatorio()
+            'ciudad_id'=>Ciudad::obtenerIdCiudadAleatorio(),
+            'propietario_id'=>User::factory()->create()
         ];
     }
 }

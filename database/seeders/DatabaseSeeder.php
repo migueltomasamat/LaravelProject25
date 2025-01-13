@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Inmueble;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Database\Factories\PerfilFactory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,9 +15,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(100)->create();
-        Inmueble::factory(20)->create();
-
-
+        $this->call([
+            CiudadSeeder::class,
+            UserSeeder::class,
+            InmuebleSeeder::class
+        ]);
     }
 }

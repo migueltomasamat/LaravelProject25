@@ -20,6 +20,8 @@ return new class extends Migration
             $table->integer('piso')->nullable();
             $table->char('puerta')->nullable();
             $table->foreignId('ciudad_id')->constrained();
+            //Campo que refleja la relación inmueble es_propiedad de un usuario
+            $table->foreignId('propietario_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

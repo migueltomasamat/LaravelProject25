@@ -13,8 +13,8 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-
-        User::factory()->create([
+        //Creación de usuarios uno por uno
+        /*User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
             'address'=>'Reina Sofia'
@@ -24,7 +24,11 @@ class UserSeeder extends Seeder
             'name' => 'Inma',
             'email' => 'Inma@mail.com',
             'address'=>'Reina Sofia'
-        ]);
+        ]);*/
+
+        //Creación usuarios múltiples
+        //User::factory(100)->create();
+
 
     }
 }
