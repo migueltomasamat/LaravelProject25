@@ -34,6 +34,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'created_at',
+        'updated_at',
+        'email_verified_at'
     ];
 
     /**
@@ -51,6 +54,12 @@ class User extends Authenticatable
 
     public function inmuebles():HasMany{
         return $this->hasMany(Inmueble::class,'propietario_id');
+    }
+
+    public function ofertas():BelongsToMany{
+        return $this->belongsToMany(Inmueble::class,'ofertas')
+            ->withTimestamps()
+            ->withPivot(['precio','fecha_vencimiento']);
     }
 
 }

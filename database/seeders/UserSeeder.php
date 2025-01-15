@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
         ]);*/
 
         //Creación usuarios múltiples
-        //User::factory(100)->create();
+        User::factory(100)->create();
 
 
     }

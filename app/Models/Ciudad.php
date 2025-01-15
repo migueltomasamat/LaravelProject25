@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 class Ciudad extends Model
 {
     //
+    protected $hidden = ['id','created_at','updated_at'];
 
     public static function obtenerIdCiudadAleatorio(){
         //Obtener el número total de ciudades que hay en la base de datos

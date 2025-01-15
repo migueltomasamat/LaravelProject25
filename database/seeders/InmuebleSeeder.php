@@ -16,6 +16,6 @@ class InmuebleSeeder extends Seeder
      */
     public function run(): void
     {
-        Inmueble::factory(10)->hasPropietario()->hasPerfil()->create();
+        Inmueble::factory(100)->hasPropietario()->hasPerfil()->create();
     }
 }
