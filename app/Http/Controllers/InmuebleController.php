@@ -32,7 +32,7 @@ class InmuebleController extends Controller
      */
     public function store(StoreInmuebleRequest $request)
     {
-        //
+
 
         $inmueble=new Inmueble();
         return $inmueble->save();

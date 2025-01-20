@@ -29,7 +29,7 @@ class Inmueble extends Model
 
     public function propietario():BelongsTo{
 
-        return $this->belongsTo(User::class,'propietario_id');
+        return $this->belongsTo(User::class,'propietario_id','id');
     }
 
     public function ofertas():BelongsToMany{

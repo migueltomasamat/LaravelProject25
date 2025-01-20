@@ -53,7 +53,7 @@ class User extends Authenticatable
     }
 
     public function inmuebles():HasMany{
-        return $this->hasMany(Inmueble::class,'propietario_id');
+        return $this->hasMany(Inmueble::class,'propietario_id','id');
     }
 
     public function ofertas():BelongsToMany{

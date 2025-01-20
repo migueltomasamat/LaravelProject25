@@ -11,7 +11,7 @@ class UpdateInmuebleRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,14 @@ class UpdateInmuebleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'numcat'=>'max:20|unique',
+            'direccion'=>'max:255',
+            'numero'=>'integer',
+            'bloque'=>'nullable|alpha_num:ascii',
+            'piso'=>'nullable|integer',
+            'puerta'=>'nullable|alpha_num:ascii',
+            'ciudad_id'=>'exists:ciudads,id',
+            'propietario_id'=>'exists:user,id'
         ];
     }
 }

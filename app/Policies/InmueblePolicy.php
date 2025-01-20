@@ -13,7 +13,7 @@ class InmueblePolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class InmueblePolicy
      */
     public function view(User $user, Inmueble $inmueble): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -29,7 +29,7 @@ class InmueblePolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -37,7 +37,7 @@ class InmueblePolicy
      */
     public function update(User $user, Inmueble $inmueble): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -45,7 +45,7 @@ class InmueblePolicy
      */
     public function delete(User $user, Inmueble $inmueble): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -53,7 +53,7 @@ class InmueblePolicy
      */
     public function restore(User $user, Inmueble $inmueble): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -61,6 +61,6 @@ class InmueblePolicy
      */
     public function forceDelete(User $user, Inmueble $inmueble): bool
     {
-        return false;
+        return true;
     }
 }
