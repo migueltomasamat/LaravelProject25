@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateInmuebleRequest extends FormRequest
+class LoginUserApiRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,14 +22,8 @@ class UpdateInmuebleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'numcat'=>'max:20|unique',
-            'direccion'=>'max:255',
-            'numero'=>'integer',
-            'bloque'=>'nullable|alpha_num:ascii',
-            'piso'=>'nullable|integer',
-            'puerta'=>'nullable|alpha_num:ascii',
-            'ciudad_id'=>'exists:ciudads,id',
-            'propietario_id'=>'exists:user,id'
+            'email'=>'required|email',
+            'password'=>'required|alpha_num|min:6'
         ];
     }
 }

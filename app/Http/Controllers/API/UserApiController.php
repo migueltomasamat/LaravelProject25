@@ -5,10 +5,12 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\Inmueble;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Symfony\Component\HttpFoundation\Response;
-
+use Illuminate\Support\Facades\DB;
 class UserApiController extends Controller
 {
     /**
@@ -108,5 +110,45 @@ class UserApiController extends Controller
 
     public function ofertas (User $user){
         return $user->ofertas;
+    }
+
+    public function attach_oferta(Request $request,User $user,Inmueble $inmueble){
+        $user->ofertas()->attach($inmueble->id,[
+            'precio'=>$request->precio,
+            'fecha_vencimiento'=>Carbon::createFromFormat('d/m/Y',$request->fecha_vencimiento)
+        ]);
+       $resultados=DB::table('ofertas')
+            ->where('user_id',"=",$user->id)
+            ->get('inmueble_id')
+            ->toArray();
+       if (in_array($inmueble->id,$resultados)){
+           return response()->json([
+               'message'=>'La oferta ha sido registrada',
+               'data'=>$user->ofertas()
+           ],Response::HTTP_OK);
+       }else{
+           return response()->json([
+               'message'=>'No se ha podido añadir la oferta',
+               'data'=>$user->ofertas()
+           ],Response::HTTP_NOT_FOUND);
+       }
+    }
+    public function deattach_oferta(Request $request,User $user,Inmueble $inmueble){
+        $user->ofertas()->detach($inmueble->id);
+        $resultados=DB::table('ofertas')
+            ->where('user_id',"=",$user->id)
+            ->get('inmueble_id')
+            ->toArray();
+        if (!in_array($inmueble->id,$resultados)){
+            return response()->json([
+                'message'=>'La oferta ha sido borrada',
+                'data'=>$user->ofertas()
+            ],Response::HTTP_OK);
+        }else{
+            return response()->json([
+                'message'=>'No se ha podido quitar la oferta',
+                'data'=>$user->ofertas()
+            ],Response::HTTP_NOT_FOUND);
+        }
     }
 }
