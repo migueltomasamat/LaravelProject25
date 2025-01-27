@@ -6,7 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreInmuebleRequest;
 use App\Http\Requests\UpdateInmuebleRequest;
 use App\Models\Inmueble;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Client\Request;
 
 class InmuebleApiController extends Controller
 {
@@ -98,5 +101,25 @@ class InmuebleApiController extends Controller
                 'data'=> $inmueble
             ],Response::HTTP_CONFLICT);
         }
+    }
+
+    public function destroyAll(){
+        $user=Auth::user();
+        if ($user->hasRole('Admin')){
+            //Eliminar todos los inmuebles
+            //DB::table('inmuebles')->delete();
+
+            return response()->json([
+                'message'=>'Se han borrado todos los inmuebles',
+                'data'=>null
+            ]);
+        }else{
+            return response()->json([
+                'message'=>'El usuario no tiene permisos para borrar',
+                'data'=>null
+            ]);
+        }
+
+
     }
 }

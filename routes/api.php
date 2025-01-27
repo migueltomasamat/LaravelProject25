@@ -32,12 +32,10 @@ Route::put('/users/{user}/ofertas/{inmueble}',[UserApiController::class,'modify_
 //Route::get('/users/{user}/ofertas/{oferta}',[UserApiController::class,'ofertas']);
 
 Route::post('/register',[RegisterUserApiController::class,'register']);
-Route::post('/login',[LoginUserApiController::class,'login']);
+Route::post('/login',[LoginUserApiController::class,'login'])->name('login');
 Route::post('/logout',[LoginUserApiController::class,'logout'])->middleware('auth:sanctum');
 
-
-
-
+Route::delete('/inmuebles',[InmuebleApiController::class,'destroyAll'])->middleware('auth:sanctum');
 
 
 

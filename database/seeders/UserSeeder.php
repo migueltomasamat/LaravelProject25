@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -14,20 +15,32 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         //Creación de usuarios uno por uno
-        /*User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'address'=>'Reina Sofia'
-        ]);
+        User::factory()->create([
+            'name' => 'Miguel',
+            'email' => 'miguel@mail.com',
+            'address'=>'Reina Sofia',
+            'password'=>Hash::make('123456789')
+        ])->assignRole('Admin');
+
 
         User::factory()->create([
             'name' => 'Inma',
-            'email' => 'Inma@mail.com',
-            'address'=>'Reina Sofia'
-        ]);*/
+            'email' => 'inma@mail.com',
+            'address'=>'Reina Sofia',
+            'password'=>Hash::make('123456789')
+        ])->assignRole('Agente');
+
+        User::factory()->create([
+            'name' => 'Nora',
+            'email' => 'nora@mail.com',
+            'address'=>'Reina Sofia',
+            'password'=>Hash::make('123456789')
+        ])->assignRole('Usuario');
 
         //Creación usuarios múltiples
-        User::factory(100)->create();
+        User::factory(100)->create()->each(function($user){
+            $user->assignRole('Usuario');
+        });
 
 
     }

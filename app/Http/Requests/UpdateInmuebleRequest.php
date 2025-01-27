@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class UpdateInmuebleRequest extends FormRequest
 {
@@ -11,7 +12,19 @@ class UpdateInmuebleRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        $user = Auth::user();
+        $inmueble = $this->route('inmueble');
+        if ($user->hasRole('Admin')){
+            return true;
+        }else{
+
+            if ($user->hasPermissionTo('editar inmueble')
+                and $user->id==$inmueble->propietario_id){
+                return true;
+            }else{
+                return false;
+            }
+        }
     }
 
     /**
