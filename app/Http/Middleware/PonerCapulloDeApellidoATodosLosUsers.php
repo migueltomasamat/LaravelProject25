@@ -15,7 +15,9 @@ class PonerCapulloDeApellidoATodosLosUsers
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $request->name=$request->name. "Capullo";
+        $request->merge($request->name. " Capullo");
+
+
         return $next($request);
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\API\InmuebleApiController;
 use App\Http\Controllers\API\UserApiController;
 use App\Http\Controllers\API\RegisterUserApiController;
 use App\Http\Controllers\API\LoginUserApiController;
+use App\Http\Middleware\PonerCapulloDeApellidoATodosLosUsers;
 
 //Route::get('/user', function (Request $request) {
 //    return $request->user();
@@ -36,6 +37,8 @@ Route::post('/login',[LoginUserApiController::class,'login'])->name('login');
 Route::post('/logout',[LoginUserApiController::class,'logout'])->middleware('auth:sanctum');
 
 Route::delete('/inmuebles',[InmuebleApiController::class,'destroyAll'])->middleware('auth:sanctum');
+
+Route::post('/users',[UserApiController::class,'store'])->middleware([PonerCapulloDeApellidoATodosLosUsers::class]);
 
 
 
