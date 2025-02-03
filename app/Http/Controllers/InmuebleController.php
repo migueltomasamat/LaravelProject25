@@ -16,7 +16,9 @@ class InmuebleController extends Controller
      */
     public function index()
     {
-        return Inmueble::all();
+        $inmuebles=Inmueble::with('perfil')->paginate(3)->items();
+        return view('inmuebles',['casas'=>$inmuebles]);
+
     }
 
     /**

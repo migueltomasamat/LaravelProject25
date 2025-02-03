@@ -2,10 +2,20 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\InmuebleController;
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
+Route::get('/', function () {
+    return view('home');
+})->name('home');
+Route::get('/about',function(){
+    return view('about');
+})->name('about');
+
+Route::get('/api',function(){
+    return true;
+})->name('api');
+
+Route::get('/inmuebles',[InmuebleController::class,'index'])->name('inmuebles');
 //
 //Route::get('/about',function(){
 //    return "Sobre nosotros";
