@@ -12,7 +12,7 @@
                 <a href="{{route('home')}}" class="nav-item nav-link {{request()->is('/')?'active':''}}">Inicio</a>
                 <a href="{{route('about')}}" class="nav-item nav-link {{request()->is('about')?'active':''}}">About</a>
                 <a href="{{route('inmuebles')}}" class="nav-item nav-link {{request()->is('inmuebles')?'active':''}}">Inmuebles</a>
-                <a href="{{route('api')}}" class="nav-item nav-link {{request()->is('api')?'active':''}}">Registro API</a>
+                <a href="{{route('api')}}" class="nav-item nav-link {{request()->is('login')?'active':''}}">Registro API</a>
             </div>
             <a href="" class="btn btn-primary px-3 d-none d-lg-flex">Add Property</a>
         </div>

@@ -11,8 +11,8 @@ Route::get('/about',function(){
     return view('about');
 })->name('about');
 
-Route::post('/api',[UserController::class,'login'])->name('login');
-Route::get('/form-api',[UserController::class,'mostrarFormulario'])->name('api');
+Route::post('/api',[UserController::class,'login'])->name('api')->middleware('auth:sanctum');
+Route::get('/form-api',[UserController::class,'mostrarFormulario'])->name('login');
 
 Route::get('/inmuebles',[InmuebleController::class,'index'])->name('inmuebles');
 //
