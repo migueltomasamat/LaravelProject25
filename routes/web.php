@@ -11,9 +11,8 @@ Route::get('/about',function(){
     return view('about');
 })->name('about');
 
-Route::get('/api',function(){
-    return true;
-})->name('api');
+Route::post('/api',[UserController::class,'login'])->name('login');
+Route::get('/form-api',[UserController::class,'mostrarFormulario'])->name('api');
 
 Route::get('/inmuebles',[InmuebleController::class,'index'])->name('inmuebles');
 //

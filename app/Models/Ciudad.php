@@ -10,8 +10,16 @@ use Illuminate\Support\Facades\DB;
 class Ciudad extends Model
 {
     //
+    /**
+     * @var string[]
+     */
     protected $hidden = ['id','created_at','updated_at'];
 
+    /**
+     * Obtiene un ID aleatorio de las ciudades almacenadas en la base de datos
+     *
+     * @return int
+     */
     public static function obtenerIdCiudadAleatorio(){
         //Obtener el número total de ciudades que hay en la base de datos
         $numeroCiudades=DB::table('ciudads')->count();
@@ -22,6 +30,11 @@ class Ciudad extends Model
 
     }
 
+    /**
+     * Permite accede a los inmuebles propiedad del usuario
+     *
+     * @return HasMany
+     */
     public function inmuebles():HasMany{
         return $this->hasMany(Inmueble::class);
     }
